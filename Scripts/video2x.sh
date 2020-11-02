@@ -2,7 +2,7 @@
 #
 # Copyright 2019-2020 Zhenfu Shi (i0ntempest)
 #
-# Version 0.2
+# Version 0.2.1
 #
 
 setup_tmpdir() {
@@ -160,11 +160,11 @@ done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
 if [ "$show_help" = "YES" ]; then
-    printf '\e[1mVideo upscaler script based on waifu2x for macOS\e[0m\nThis script requires waifu magnifier app installed from AppStore and \"waifu2x\" command in your path.\nFor scaling factors other than 2 and 4, free software ImageMagick is required.\n\nUsage:\n--model, -m <model>                 Model to run [srcnn_mps, srcnn_coreml, cunet], defaults to srcnn_mps if omitted\n--style <style>                     Style of the image [anime, photo], defaults to anime if omitted)\n--scale-factor, -s <scale-factor>   Scale factor (optional, accepts values between 1 and 4, defaults to 2 if omitted)\n--noise-level, -n <noise-level>     Noise level (optional, accepts integers from 0 to 3, defaults to 1 if omitted)\n--input, -i <input>                 Input video file\n--output, -o <output>               Output path (WITHOUT file name, defaults to the same path as input if omitted)\n--help, -h                          Show this help\n--version, -V                       Show script version\n'
+    printf '\e[1mVideo upscaler script based on waifu2x for macOS\e[0m\nThis script requires waifu magnifier app installed from AppStore and \"waifu2x\" command in your path.\nFree software FFmpeg is required for upscaling.\nFor scaling factors other than 2 and 4, free software ImageMagick is required.\n\nUsage:\n--model, -m <model>                 Model to run [srcnn_mps, srcnn_coreml, cunet], defaults to srcnn_mps if omitted\n--style <style>                     Style of the image [anime, photo], defaults to anime if omitted)\n--scale-factor, -s <scale-factor>   Scale factor (optional, accepts values between 1 and 4, defaults to 2 if omitted)\n--noise-level, -n <noise-level>     Noise level (optional, accepts integers from 0 to 3, defaults to 1 if omitted)\n--input, -i <input>                 Input video file\n--output, -o <output>               Output path (WITHOUT file name, defaults to the same path as input if omitted)\n--help, -h                          Show this help\n--version, -V                       Show script version\n'
     exit 0
 fi
 if [ "$show_ver" = "YES" ]; then
-    echo "video2x script version 0.2"
+    echo "video2x script version 0.2.1"
     exit 0
 fi
 if [ -z "$input_file" ]; then

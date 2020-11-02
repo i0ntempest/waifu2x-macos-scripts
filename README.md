@@ -19,7 +19,7 @@ Most waifu2x upscalers are either Windows only, or lacks some features I want. S
 
 - [video2x.sh](./Scripts/video2x.sh)
 
-    Bash script. Basic video upscaler script, resembles early versions of [video2x](https://video2x.org). Should be able to take any video as an input, but output is currently hardcoded to be H.264 mp4. Requires [FFMPEG](https://ffmpeg.org), arbitrary factor upscaling requires [ImageMagick](https://imagemagick.org)).
+    Bash script. Basic video upscaler script, resembles early versions of [video2x](https://video2x.org). Should be able to take any video as an input, but output is currently hardcoded to be H.264 mp4. Requires [FFmpeg](https://ffmpeg.org), arbitrary factor upscaling requires [ImageMagick](https://imagemagick.org)).
 
 - More to be added
 

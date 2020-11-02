@@ -11,7 +11,7 @@ Most waifu2x upscalers are either Windows only, or lacks some features I want. S
 ## Scripts
 - [waifu2x.sh](./Scripts/waifu2x.sh)
 
-    POSIX sh script. Simple launcher script that passes all args to the executable. Nothing fancy here. Also featured in [waifu2x-ios wiki](https://github.com/imxieyi/waifu2x-ios/wiki/Usage-for-Command-Line-\(CLI\)-on-macOS-Version). You need to grant the app file access permission in its GUI before using this. Both scripts below depends on this being in your PATH as `waifu2x`.
+    POSIX sh script. Simple launcher script that passes all args to the executable. Nothing fancy here. Also featured in [waifu2x-ios wiki](https://github.com/imxieyi/waifu2x-ios/wiki/Usage-for-Command-Line-\(CLI\)-on-macOS-Version). You need to grant the app file access permission in its GUI before using this. All scripts below depend on this being in your PATH as `waifu2x`.
 
 - [auto-waifu2x.sh](./Scripts/auto-waifu2x.sh)
 

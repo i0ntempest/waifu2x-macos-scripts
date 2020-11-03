@@ -15,11 +15,11 @@ Most waifu2x upscalers are either Windows only, or lacks some features I want. S
 
 - [auto-waifu2x.sh](./Scripts/auto-waifu2x.sh)
 
-    POSIX sh script. Assumes you have a certain folder structure under `~/Pictures/` (if not it will create it for you), and does multiple upscaling jobs with different scaling factors with one single command. Also supports arbitrary factor upscaling (accepts anything from 1 to 4 rather than just 2 and 4) (requires [ImageMagick](https://imagemagick.org)).
+    POSIX sh script. Assumes you have a certain folder structure under `~/Pictures/` (if not it will create it for you), and does multiple upscaling jobs with different scaling factors with one single command. Also supports arbitrary factor upscaling (accepts anything from 1 to 4 rather than just 2 and 4, requires [ImageMagick](https://imagemagick.org)).
 
 - [video2x.sh](./Scripts/video2x.sh)
 
-    Bash script. Basic video upscaler script, resembles early versions of [video2x](https://video2x.org). Should be able to take any video as an input, but output is currently hardcoded to be H.264 mp4. Requires [FFmpeg](https://ffmpeg.org), arbitrary factor upscaling requires [ImageMagick](https://imagemagick.org)).
+    Bash script. Basic video upscaler script, resembles early versions of [video2x](https://video2x.org). Should be able to take any video as an input, but output is currently hardcoded to be H.264 mp4. Requires [FFmpeg](https://ffmpeg.org), arbitrary factor upscaling requires [ImageMagick](https://imagemagick.org).
 
 - More to be added
 

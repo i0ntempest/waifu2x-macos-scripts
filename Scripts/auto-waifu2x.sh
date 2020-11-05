@@ -1,13 +1,13 @@
 #!/usr/bin/env sh
 #
 # Copyright 2019-2020 Zhenfu Shi (i0ntempest)
-# Version 0.5
+# Version 0.5.1
 #
 
 upscale() {
     if [ -n "$(ls -A ~/Pictures/waifu2x/"$1"x/ 2>/dev/null)" ]; then
         if [ "$(awk -v usfactor="$1" 'BEGIN { print (usfactor>4||usfactor<1) }')" -eq 1 ]; then
-            echo "Scaling factor is invalid or out of range, only values between 1 and 4 are supported"
+            echo "Scaling factor is invalid or out of range, only values between 1 and 4 are supported" >&2
             err=1;return
         fi
         if [ "$(awk -v usfactor="$1" 'BEGIN { lg = log(usfactor) / log(2); print (lg == int(lg))}')" -eq 1 ]; then
@@ -15,7 +15,7 @@ upscale() {
             local usfactor="$1" # integer
         else
             if [ -z "$(which convert)" ]; then
-                echo "Any scaling factors other than 2 and 4 requires 'convert' program from ImageMagick but it doesn't seem to be in your system." 
+                echo "Any scaling factors other than 2 and 4 requires 'convert' program from ImageMagick but it doesn't seem to be in your system." >&2
                 err=2;return
             fi
             if [ "$(awk -v usfactor="$1" 'BEGIN { print (usfactor<2) }')" -eq 1 ]; then
@@ -32,13 +32,13 @@ upscale() {
             local filename="${file##*/}"; local filename="${filename%.*}"_cunet_anime_noise1_"$usfactor"x
             waifu2x --model cunet -s "$usfactor" -n 1 -i "$file" -o ~/Pictures/waifu2x/Output/.temp/"$filename".png
             if [ "$?" != 0 ];then
-                err=3;echo "Failed to upscale: $file";continue
+                err=3;echo "Failed to upscale: $file >&2";continue
             fi
             if [ -n "$dsfactor" ];then
                 echo "Downscaling to $dsfactor%"
                 convert ~/Pictures/waifu2x/Output/.temp/"$filename".png -resize "$dsfactor"% ~/Pictures/waifu2x/Output/.temp/"$filename"_ds"$dsfactor"%.png
                 if [ "$?" != 0 ]; then
-                    err=4;echo "Failed to downscale: $file"
+                    err=4;echo "Failed to downscale: $file" >&2
                 else
                     echo "Downscaled image saved: ~/Pictures/waifu2x/Output/.temp/""$filename""_ds""$dsfactor""%.png"
                 fi
@@ -64,7 +64,7 @@ upscale() {
 find ~/Pictures/waifu2x -name ".DS*" -delete # Kill Desktop Services Store files so they don't confuse waifu2x
 upscale 1.5;upscale 2;upscale 3;upscale 4
 if [ -n "$err" ]; then
-    echo "Some upscaling jobs failed."
+    echo "Some upscaling jobs failed." >&2
     exit "$err"
 fi
 RESULTS="$(ls -A ~/Pictures/waifu2x/Output/ 2>/dev/null)"

@@ -188,7 +188,7 @@ if [ "$show_help" = "YES" ]; then
     exit 0
 fi
 if [ "$show_ver" = "YES" ]; then
-    echo "video2x script version 0.2.2"
+    echo "video2x script version 0.3"
     exit 0
 fi
 if [ -z "$input_file" ]; then

@@ -32,7 +32,7 @@ upscale() {
             local filename="${file##*/}"; local filename="${filename%.*}"_cunet_anime_noise1_"$usfactor"x
             waifu2x --model cunet -s "$usfactor" -n 1 -i "$file" -o ~/Pictures/waifu2x/Output/.temp/"$filename".png
             if [ "$?" != 0 ];then
-                err=3;echo "Failed to upscale: $file >&2";continue
+                err=3;echo "Failed to upscale: $file" >&2;continue
             fi
             if [ -n "$dsfactor" ];then
                 echo "Downscaling to $dsfactor%"

@@ -15,7 +15,11 @@ Most waifu2x upscalers are either Windows only, or lacks some features I want. S
 
 - [auto-waifu2x.sh](./Scripts/auto-waifu2x.sh)
 
-    POSIX sh script. Assumes you have a certain folder structure under `~/Pictures/` (if not it will create it for you), and does multiple upscaling jobs with different scaling factors with one single command. Also supports arbitrary factor upscaling (accepts anything from 1 to 4 rather than just 2 and 4, requires [ImageMagick](https://imagemagick.org)).
+    POSIX sh script. Assumes you have a certain folder structure under `~/Pictures/` (if not it will create it for you), and does multiple upscaling jobs with different scaling factors with one single command. Also supports arbitrary factor upscaling (accepts anything from 1 to 4 rather than just 2, 3 and 4, requires [ImageMagick](https://imagemagick.org)).
+
+- [auto-waifu2x-moveimg.sh](./Scripts/auto-waifu2x-moveimg.sh)
+
+    POSIX sh script. Assumes the same folder structure as above, scans a given folder for images and move them into appropriate folder based on their size, for upscaling later. Edit `master_res_width` variable to set your desired target resolution (3840 by default). Requires [ImageMagick](https://imagemagick.org).
 
 - [video2x.sh](./Scripts/video2x.sh)
 

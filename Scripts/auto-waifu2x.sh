@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 #
 # Copyright 2019-2022 Zhenfu Shi (i0ntempest)
-# Version 1.0.0
+# Version 1.0.1
 #
 
 upscale() {
@@ -74,6 +74,14 @@ fi
 RESULTS="$(ls -A ~/Pictures/waifu2x/Output/ 2>/dev/null)"
 INPUT="NS"
 if [ -n "$(ls -A ~/Pictures/waifu2x/*x/* 2>/dev/null)" ]; then
+    while [ ! "$INPUT" = "Y" ] && [ ! "$INPUT" = "y" ] && [ ! "$INPUT" = "N" ] && [ ! "$INPUT" = "n" ] && [ ! "$INPUT" = "" ]; do
+        printf "Do you want to open the output folder (Y/n)? " && read -r INPUT
+    done
+    if [ "$INPUT" = "Y" ] || [ "$INPUT" = "y" ] || [ "$INPUT" = "" ]; then
+        open ~/Pictures/waifu2x/Output/
+        echo "Output folder opened"
+    fi
+    INPUT="NS"
     while [ ! "$INPUT" = "Y" ] && [ ! "$INPUT" = "y" ] && [ ! "$INPUT" = "N" ] && [ ! "$INPUT" = "n" ] && [ ! "$INPUT" = "" ]; do
         printf "Delete original files (Y/n)? " && read -r INPUT
     done

@@ -17,7 +17,7 @@ get_video_info() {
 extract_frames() {
     echo "Extracting frames..."
     ffmpeg -hide_banner -i "$1" "$tmpdir"/extracted_frames/extracted_%0d.png
-    if [ "$?" != 0 ];then
+    if [ "$?" != 0 ]; then
         err=5;echo "Frame extraction failed" >&2;return "$err"
     fi
     total_frames=$(ls "$tmpdir"/extracted_frames | wc -l | sed 's/^ *//')
@@ -44,18 +44,18 @@ upscale() {
             printf "Upscaling: $frame_num/$total_frames frames\r"
             local filename="${file##*/}"; local filename="${filename%.*}"
             waifu2x --model "$2" -s "$usfactor" -n "$5" -i "$file" -o "$tmpdir"/upscaled_frames/.temp/"$filename".png > /dev/null
-            if [ "$?" != 0 ];then
+            if [ "$?" != 0 ]; then
                 err=3;echo "Failed to upscale: $file"", frame number $frame_num" >&2;break
             fi
             ((frame_num+=1))
             #frame_num=$(expr $frame_num + 1)
         done
-        if [ -n "$err" ];then
+        if [ -n "$err" ]; then
             return "$err"
         fi
         echo ""
         echo "Upscaling finished"
-        if [ -n "$dsfactor" ];then
+        if [ -n "$dsfactor" ]; then
             echo "$dsfactor""% downscaling in progress..."
             frame_num=1
             for file in "$tmpdir"/upscaled_frames/.temp/*.png; do
@@ -68,7 +68,7 @@ upscale() {
                 rm "$file"
                 ((frame_num+=1))
             done
-            if [ -n "$err" ];then
+            if [ -n "$err" ]; then
                 return "$err"
             fi
             echo ""
@@ -86,7 +86,7 @@ assemble_video() {
     echo "Assembling upscaled frames into a video..."
     assemble_dest="$tmpdir"/assembled_noaudio.mp4
     ffmpeg -hide_banner -r "$fps" -i "$tmpdir"/upscaled_frames/extracted_%d.png -preset slow -crf 15 -pix_fmt yuv420p "$assemble_dest"
-    if [ "$?" != 0 ];then
+    if [ "$?" != 0 ]; then
         err=5;echo "Video assembly failed" >&2;return "$err"
     fi
     echo "Assembly completed"
@@ -96,7 +96,7 @@ migrate_streams() {
     echo "Migrating other media streams into new video..."
     migrate_dest="$tmpdir"/migrated.mp4
     ffmpeg -hide_banner -i "$assemble_dest" -i "$1" -map 0:v:0 -map 1:a:0 -c copy "$migrate_dest"
-    if [ "$?" != 0 ];then
+    if [ "$?" != 0 ]; then
         err=5;echo "Stream migration failed" >&2;return "$err"
     fi
     echo "Stream migration completed"
